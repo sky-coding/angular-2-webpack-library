@@ -1,28 +1,84 @@
-import { Component } from '@angular/core';
-import { ROUTER_DIRECTIVES } from '@angular/router';
+/*
+ * Angular 2 decorators and services
+ */
+import { Component, ViewEncapsulation } from '@angular/core';
 
-import {SomeComponent, SOME_STATIC_VALUE} from 'angular-2-webpack-library';
+import { AppState } from './app.service';
 
-let objectWhenRequired = require('angular-2-webpack-library');
-console.log('objectWhenRequired', objectWhenRequired);
-
-console.log('SomeComponent', SomeComponent);
-console.log('SOME_STATIC_VALUE', SOME_STATIC_VALUE);
-
-
-import '../style/app.scss';
-
-
+/*
+ * App Component
+ * Top Level Component
+ */
 @Component({
-  selector: 'my-app', // <my-app></my-app>
-  providers: [],
-  directives: [SomeComponent],
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
-})
-export class AppComponent {
-  name = 'Consumer Application';
+  selector: 'app',
+  encapsulation: ViewEncapsulation.None,
+  styleUrls: [
+    './app.style.css'
+  ],
+  template: `
+    <nav>
+      <span>
+        <a [routerLink]=" ['./'] ">
+          Index
+        </a>
+      </span>
+      |
+      <span>
+        <a [routerLink]=" ['./home'] ">
+          Home
+        </a>
+      </span>
+      |
+      <span>
+        <a [routerLink]=" ['./detail'] ">
+          Detail
+        </a>
+      </span>
+      |
+      <span>
+        <a [routerLink]=" ['./about'] ">
+          About
+        </a>
+      </span>
+    </nav>
 
-  constructor() {
+    <main>
+      <sample-component></sample-component>
+      <router-outlet></router-outlet>
+    </main>
+
+    <pre class="app-state">this.appState.state = {{ appState.state | json }}</pre>
+
+    <footer>
+      <span>WebPack Angular 2 Starter by <a [href]="url">@AngularClass</a></span>
+      <div>
+        <a [href]="url">
+          <img [src]="angularclassLogo" width="25%">
+        </a>
+      </div>
+    </footer>
+  `
+})
+export class App {
+  angularclassLogo = 'assets/img/angularclass-avatar.png';
+  name = 'Angular 2 Webpack Starter';
+  url = 'https://twitter.com/AngularClass';
+
+  constructor(
+    public appState: AppState) {
+
   }
+
+  ngOnInit() {
+    console.log('Initial App State', this.appState.state);
+  }
+
 }
+
+/*
+ * Please review the https://github.com/AngularClass/angular2-examples/ repo for
+ * more angular app examples that you may copy/paste
+ * (The examples may not be updated as quickly. Please open an issue on github for us to update it)
+ * For help or questions please contact us at @AngularClass on twitter
+ * or our chat on Slack at https://AngularClass.com/slack-join
+ */
