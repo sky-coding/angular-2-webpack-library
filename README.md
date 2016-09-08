@@ -1,6 +1,6 @@
 # angular-2-webpack-library
 
-This repo demonstrates building an Angular 2 libray with Webpack, and then consuming it with another Angular 2 application also built with Webpack.
+This repo demonstrates building an Angular 2 library with Webpack, and then consuming it with another Angular 2 application also built with Webpack.
 
 ### Setup
 clone & `cd` into root directory
@@ -21,73 +21,58 @@ clone & `cd` into root directory
 
 `npm start`
 
-http://localhost:8080
+http://localhost:3000/
 
-Important features of the library itself are:
+### Webpack
 
- * components have separate files for templates and styles
- * styles are preprocessed, using SASS
- * additional assets are exported (images, raw SASS files)
+Using webpack for bundling the library gives us all of the configuration and ease-of-use that webpack provides (no task runners!) Some important features the library uses webpack for:
 
-Here are the key files to look at:
+* components can have separate files for templates and styles
+* styles can be preprocessed (LESS/SASS) via webpack loaders
+* additional assets are exported (images, SASS files)
 
-```javascript
-// ./angular-2-webpack-library/src/index.ts
-export * from './some/some.component';
-
-export let SOME_STATIC_VALUE = 'VALUE EXPORT SUCCESS';
-```
+Here is a sample component exported from the library:
 
 ```javascript
-// ./angular-2-webpack-library/src/some/some.component.ts
-import {Component} from '@angular/core';
+// ./angular-2-webpack-library/src/components/sample.component.ts
+import {Component, OnInit} from '@angular/core';
 
 @Component({
-  selector: 'some-component', // <some-component></some-component>
-  providers: [],
-  directives: [],
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  selector: 'sample-component',
+  styles: [``],
+  template: `
+    <h1>Sample Component</h1>
+  `
 })
-export class SomeComponent {
-  public name = 'World';
+export class SampleComponent implements OnInit{
+
+  public foo:string = 'foo';
 
   constructor() {}
-}
 
+  ngOnInit() {
+    console.log('hello from SampleComponent');
+  }
+}
 ```
 
+And here it is being consumed:
 
 ```javascript
-// ./consumer-application/src/app/app.component.ts
-import {SomeComponent, SOME_STATIC_VALUE} from 'angular-2-webpack-library';
+// ./consumer-application/src/app/app.module.ts
+import { SampleComponent } from 'angular-2-webpack-library';
 
-let objectWhenRequired = require('angular-2-webpack-library');
-console.log('objectWhenRequired', objectWhenRequired);
-
-console.log('SomeComponent', SomeComponent);
-console.log('SOME_STATIC_VALUE', SOME_STATIC_VALUE);
-
-@Component({
-	directives: [SomeComponent],
-/* ... */
+@NgModule({
+  declarations: [
+    SampleComponent
+  ]
+})
 ```
 
-```
-> objectWhenRequired Object {SOME_STATIC_VALUE: "VALUE EXPORT SUCCESS"}
-> SomeComponent SomeComponent() { this.name = 'World'; }
-> SOME_STATIC_VALUE VALUE EXPORT SUCCESS
-> EXCEPTION: No Directive annotation found on SomeComponent
-> EXCEPTION: No Directive annotation found on SomeComponent
-```
+Sample Component is now usable in the consumer using `<sample-component></sample-component>`.
 
-This setup is awesome, and could serve as the foundation for quality third-party libraries, but is currently suffering from an annotations problem. As you can see above, the component and other exports are available, but annotations are not making it into Angular. Suggestions or contributions are very appreciated.
-
-Thanks!
-
-
-
+This setup is awesome, and is ready to serve as the foundation for Angular 2 libraries!
 
 ---
 
- * [preboot/angular2-webpack](https://github.com/preboot/angular2-webpack) used for seeding
+ * [AngularClass/angular2-webpack-starter](https://github.com/AngularClass/angular2-webpack-starter) used for seeding
