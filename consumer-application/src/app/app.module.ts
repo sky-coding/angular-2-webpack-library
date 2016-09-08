@@ -19,10 +19,8 @@ import { About } from './about';
 import { NoContent } from './no-content';
 import { XLarge } from './home/x-large';
 
-let LIBRARY = require('./myLibrary');
-let SampleComponent = LIBRARY.SampleComponent;
+import { SampleComponent } from 'angular-2-webpack-library';
 
-console.log('LIBRARY', LIBRARY);
 console.log('SampleComponent', SampleComponent);
 
 // Application wide providers

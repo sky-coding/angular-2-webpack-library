@@ -26,18 +26,24 @@ module.exports = {
 
   // cache: false, // Cache generated modules and chunks to improve performance for multiple incremental builds. This is enabled by default in watch mode. You can pass false to disable it.
   // debug: true, // Switch loaders to debug mode.
-  // devtool: 'cheap-module-source-map',
+  devtool: 'cheap-module-source-map',
 
   entry: './src/index.ts',
 
   output: {
     path: helpers.root('dist'),
-    filename: 'myLibrary.js',
+    filename: 'src/index.js',
     // sourceMapFilename: '[name].map',
     // chunkFilename: '[id].chunk.js',
-    library: 'myLibrary',
+    library: 'angular-2-webpack-library',
     libraryTarget: 'umd',
-    // umdNamedDefine: true
+
+
+    /* define("angular-2-webpack-library", ["@angular/core"], factory)
+    *  vs
+    *  define(["@angular/core"], factory)
+    */
+    umdNamedDefine: true
   },
 
   externals: [

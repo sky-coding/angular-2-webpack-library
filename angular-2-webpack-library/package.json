@@ -6,6 +6,8 @@
   "author": "",
   "homepage": "",
   "license": "",
+  "main": "dist/src/index.js",
+  "typings": "dist/src/index.d.ts",
   "scripts": {
     "build": "webpack --config webpack.config.js  --progress --profile --bail",
     "clean:dist": "npm run rimraf -- dist",

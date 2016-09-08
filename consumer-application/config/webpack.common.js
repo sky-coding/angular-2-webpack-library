@@ -80,6 +80,9 @@ module.exports = {
     // remove other default values
     modulesDirectories: ['node_modules'],
 
+    alias: {
+      '@angular/core': require.resolve('@angular/core')
+    }
   },
 
   /*
