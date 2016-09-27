@@ -1,0 +1,10 @@
+logs
+*.log
+/config
+/src
+/node_modules
+/bower_components
+npm-debug.log
+.idea/
+*.swp
+webpack.config.js

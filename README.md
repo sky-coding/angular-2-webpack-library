@@ -1,27 +1,23 @@
 # angular-2-webpack-library
 
-This repo demonstrates building an Angular 2 library with Webpack, and then consuming it with another Angular 2 application also built with Webpack.
+This repo is a seed for building an Angular 2 library with Webpack. Supports Angular 2.0.0, Webpack 2, and Typescript 2.
 
-### Setup
-clone & `cd` into root directory
-
-`cd ./angular-2-webpack-library`
-
+### Build & Deploy Library
 `npm install`
 
 `npm run build`
 
-`npm link`
+`npm version major`
 
-`cd ../consumer-application`
+`npm publish`
 
-`npm install`
+Remember to update package.json and webpack.config.js with the name of your library.
 
-`npm link angular-2-webpack-library`
+### Install Library into Consumer
 
-`npm start`
+`npm install angular-2-webpack-library --save`
 
-http://localhost:3000/
+Replace "angular-2-webpack-library" with the name you gave the library on npm.
 
 ### Webpack
 
@@ -34,7 +30,7 @@ Using webpack for bundling the library gives us all of the configuration and eas
 Here is a sample component exported from the library:
 
 ```javascript
-// ./angular-2-webpack-library/src/components/sample.component.ts
+// ./src/components/sample.component.ts
 import {Component, OnInit} from '@angular/core';
 
 @Component({
@@ -44,11 +40,12 @@ import {Component, OnInit} from '@angular/core';
     <h1>Sample Component</h1>
   `
 })
-export class SampleComponent implements OnInit{
+export class SampleComponent implements OnInit {
 
-  public foo:string = 'foo';
+  public foo: string = 'foo';
 
-  constructor() {}
+  constructor() {
+  }
 
   ngOnInit() {
     console.log('hello from SampleComponent');
@@ -56,15 +53,14 @@ export class SampleComponent implements OnInit{
 }
 ```
 
-And here it is being consumed:
+And here is how to consume it:
 
 ```javascript
-// ./consumer-application/src/app/app.module.ts
-import { SampleComponent } from 'angular-2-webpack-library';
+import { Angular2Module, SampleComponent } from 'angular-2-webpack-library';
 
 @NgModule({
-  declarations: [
-    SampleComponent
+  imports: [
+    Angular2Module
   ]
 })
 ```
@@ -75,4 +71,4 @@ This setup is awesome, and is ready to serve as the foundation for Angular 2 lib
 
 ---
 
- * [AngularClass/angular2-webpack-starter](https://github.com/AngularClass/angular2-webpack-starter) used for seeding
+ * Thanks [AngularClass/angular2-webpack-starter](https://github.com/AngularClass/angular2-webpack-starter) for config 
