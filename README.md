@@ -2,10 +2,17 @@
 
 This repo is a seed for building an Angular 2 library with Webpack. Supports Angular 2.0.0, Webpack 2, and Typescript 2.
 
-### Build & Deploy Library
+### Build Library
+
 `npm install`
 
 `npm run build`
+
+### Run Demo application (consumes Library)
+
+`npm run server:demo`
+
+### Deploy Library (optional)
 
 `npm version major`
 
@@ -13,11 +20,9 @@ This repo is a seed for building an Angular 2 library with Webpack. Supports Ang
 
 Remember to update package.json and webpack.config.js with the name of your library.
 
-### Install Library into Consumer
+### Install Library into independent application
 
-`npm install angular-2-webpack-library --save`
-
-Replace "angular-2-webpack-library" with the name you gave the library on npm.
+`npm install <your-library-name> --save`
 
 ### Webpack
 
@@ -35,7 +40,6 @@ import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'sample-component',
-  styles: [``],
   template: `
     <h1>Sample Component</h1>
   `

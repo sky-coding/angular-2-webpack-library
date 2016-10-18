@@ -7,10 +7,10 @@
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
-    "noEmitHelpers": true,
+    "noEmitHelpers": false,
     "strictNullChecks": false,
-    "declaration": true,
-    "baseUrl": "./src",
+    "declaration": false,
+    "baseUrl": "./demo",
     "paths": [
     ],
     "lib": [
@@ -28,7 +28,8 @@
   },
   "exclude": [
     "node_modules",
-    "dist"
+    "dist",
+    "demo-dist"
   ],
   "awesomeTypescriptLoaderOptions": {
     "forkChecker": true,

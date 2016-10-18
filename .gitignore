@@ -45,12 +45,14 @@ npm-debug.log
 
 # Dist #
 /dist
+/demo-dist
 /public/__build__/
 /src/*/__build__/
 /__build__/**
 /public/dist/
 /src/*/dist/
 /dist/**
+/demo-dist/**
 .webpack.json
 
 # Doc #

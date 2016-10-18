@@ -56,7 +56,7 @@ module.exports = {
       {
         test: /\.ts$/,
         loaders: [
-          'awesome-typescript-loader',
+          "ts-loader?{configFileName:'tsconfig.library.json'}",
           'angular2-template-loader'
         ],
         exclude: [/\.(spec|e2e)\.ts$/]
